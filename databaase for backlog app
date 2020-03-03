@@ -1,0 +1,88 @@
+DROP SCHEMA IF EXISTS demo;
+CREATE SCHEMA demo;
+USE demo;
+
+-------------------------------------------------
+-- Struktura tabeli dla user stories grid
+-------------------------------------------------
+
+CREATE TABLE tasks (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	user_story TEXT,
+	priority VARCHAR(20),
+	PRIMARY KEY  (id)
+	);
+	
+-------------------------------------------------
+--	Struktura tabeli dla ToDo grid
+-------------------------------------------------	
+	
+	CREATE TABLE to_do (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	user_story TEXT,
+	task_details TEXT,
+	finish_date DATE,
+	difficulty VARCHAR(20),
+	priority VARCHAR(20),
+	PRIMARY KEY  (id)
+	);
+	
+	
+-------------------------------------------------
+-- 	Struktura tabeli dla InProgress Grid	
+-------------------------------------------------
+
+	CREATE TABLE in_progress (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT,	
+	task_details TEXT,
+	finish_date DATE,
+	difficulty VARCHAR(20),
+	priority VARCHAR(20),
+	PRIMARY KEY  (id)
+	);
+	
+--------------------------------------------------
+--	Struktura tabeli dla Done  Grid	
+--------------------------------------------------
+	
+	CREATE TABLE done (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	user_story TEXT,
+	task_details TEXT,
+	finish_date DATE,
+	difficulty VARCHAR(20),	
+	PRIMARY KEY  (id)
+	);
+	
+-----------------------------------------	
+	
+
+
+---------------------------------------------------
+-- Dodajemy do pliku POM.xml następujące zależności
+---------------------------------------------------
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jdbc</artifactId>
+</dependency>  
+      
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <scope>runtime</scope>
+</dependency> 
+
+
+---------------------------------------------------
+-- W pliku resources/application.properties 
+-- ustawiamy baze danych oraz hasła do niej
+-- według następującego przykładu:
+----------------------------------------------------
+
+
+
+spring.datasource.url=jdbc:mysql://localhost:3306/demo
+spring.datasource.username=root
+spring.datasource.password=password
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
